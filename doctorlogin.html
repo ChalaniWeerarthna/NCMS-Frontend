@@ -15,6 +15,11 @@
      <link rel="stylesheet" href="node_modules/bootstrap-social/bootstrap-social.css">
     
      <link href="css/styles.css" rel="stylesheet">
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+     <script src="js/login.js"></script>
+     <script src="toaster/toastr.min.js"></script>
+     <script src="jquery/jquery.min.js"></script>
+     <script src="jquery/jquery.easing.min.js"></script>
  
 </head>
 
@@ -30,11 +35,10 @@
                 <ul class="navbar-nav">
                     <li class="nav-item "><a class="nav-link" href="./welcome.html"><span class="fa fa-home fa-lg"></span> Home</a></li>
                     <li class="nav-item "><a class="nav-link" href="./patientStatics.html"><span class="fa fa-bar-chart"></span>Patients Statics</a></li>
-                    <li class="nav-item active "><a class="nav-link" href="./selectregister.html"><span class="fa fa-id-card-o"></span> Register</a></li>
-                    <li class="nav-item "><a class="nav-link" href="selectlogin.html"><span class="fa fa-sign-in"></span> Login</a></li>
+                    <li class="nav-item "><a class="nav-link" href="./selectregister.html"><span class="fa fa-id-card-o"></span> Register</a></li>
+                    <li class="nav-item active "><a class="nav-link" href="selectlogin.html"><span class="fa fa-sign-in"></span> Login</a></li>
                     <li class="nav-item "><a class="nav-link" href="./mohlogin.html"><span class="fa fa-user-circle"></span> MOH</a></li>
-                        
-                       
+                   
                 </ul>            
            </div>    
         </div>
@@ -44,11 +48,10 @@
     <header class="jumbotron">
         <div class="container">
         <div class="row row-header">
-                <div class="col">
-                      <h1 class="text-center">If you have any COVID-19 symptoms, please register here immediately</h1>
+        <div class="col">
+                      <h1 class="text-center">Please register before login</h1>
                    
                 </div>
-                
             </div>
         </div>
     </header>
@@ -57,40 +60,57 @@
         <div class="row">
             <ol class="col-12 breadcrumb">
                 <li class="breadcrumb-item"><a href="./welcome.html">Home</a></li>
-                <li class="breadcrumb-item active">Register</li>
+                <li class="breadcrumb-item active">Login</li>
             </ol>
         </div>
 
         <div class="row row-content">  
 
-            <div class="col-sm-5 offset-sm-1">
-               <div class="media">
-                    <img class="d-flex mr-3 img-thumbnail align-self-center"
-                            src="img/patreg.jpg" height="163" width="174" alt="patients" >
-                    <div class="media-body">
-                        
-                        <a href="./patientregister.html"><h2 class="mt-0">Patient</h2> </a>
-                        <p class="d-none d-sm-block">Patients should register here
-                        </p>
+            <div class="col-sm-10 offset-sm-1">
+                <div class="card">
+                    <h3 class="card-header bg-primary text-white">Login</h3>
+
+                    <div class="card-body">
+                        <form id= "doctorloginform" method="post" action=" ">
+                      
+                          <div class="form-group row">
+                                <label for="loginas" class="col-md-2 col-form-label">Login as</label>
+                                <div class="col-md-10">
+                                    <select class="form-control" name="loginas">
+                                        <option>Doctor</option>
+                                       
+                                        
+                                       
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="UserName" class="col-md-2 col-form-label">User Name</label>
+                                <div class="col-md-10">
+                                    <input type="text" class="login-input" name="email" id="email" required="required" placeholder="Email" value = "">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="Password" class="col-md-2 col-form-label">Password</label>
+                                <div class="col-md-10">
+                                    <input type="password" class="login-input" id="doctor_id" name="doctor_id" required="required" placeholder="Doctor ID" value="">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="offset-md-2 col-md-10">
+                                    
+                                    <!--<a href="./welcome.html" class="btn btn-info" role="button">Login</a>-->
+                                    <input type="submit" name="login" value="Login" class="btn btn-primary btnSubmit ">
+                                </div>
+                            </div>
+                              
+                        </form>
+        
+        
                     </div>
                 </div>
-               
-           
             </div>
-            <div class="col-sm-5 offset-sm-1">
-               <div class="media">
-                    <img class="d-flex mr-3 img-thumbnail align-self-center"
-                            src="img/docreg.png" height="163" width="174" alt="View Users" >
-                    <div class="media-body">
-                        
-                        <a href="./doctorregister.html"><h2 class="mt-0">Doctor</h2> </a>
-                        <p class="d-none d-sm-block">Doctors should register here
-                        </p>
-                    </div>
-                </div>
-               
-           
-            </div>
+
         
         </div>
     </div>
@@ -126,6 +146,19 @@
 <script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
 <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 
+
+<script type="text/javascript">
+$(document).ready(function () {
+    $('#doctorloginform').submit(function (e) {
+        e.preventDefault();
+        $(".errorMessage").remove();
+
+        let form = $(this);
+        doctorLogin(form);
+    });
+});
+</script>
 </body>
 
 </html>
+
