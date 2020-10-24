@@ -1,8 +1,14 @@
-# CO-328-project
-Lecture hall management system
-To design and develop an online SEMINAR HALL booking application which will allow internal users and external users also to book SEMINAR HALL as per their expected event schedules. Any user internal or external has to raise a request for SEMINAR HALL booking and it will be approved by admin. A logged in user can check availability date wise and hourly wise too. Will have the option to provide the hourly availability info too while raising the request.
- Once approved an email notification can be sent over confirming the booking, we can also send SMS notification. The home page of the system shows the available seminar halls details on particular dates, after user’s book the venue then all the details can be visible on the screen that the seminar hall name, number, date, time, etc. 
-The main aim of developing this seminar hall or function hall booking system project is to provide online seminar hall booking platform to the students in their colleges or schools or universities. 
+# NCMS-Frontend
+
+NCMS- National Covid Management System
+
+This National COVID Management System(NCMS) can be used to efficiently manage the patients and hospitals during the COVID19 pandemic situation. This is involved with citizens, hospitals, doctors, and authorities of the country. The followings are the main features of the system.
+
+* MoH can see the patient statistics Daily update - country level, district level, hospital level Overall status until now
+
+* MoH can check hospitals and bed statistics Daily update - country level, district level, hospital level Overall status until now
+
+* Citizens can see patient statistics Daily update - country level, district level, hospital level Overall status until now
 
 # Setting up with Bootstrap4
 
