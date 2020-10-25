@@ -35,21 +35,3 @@ function addDoctor(form) {
     });
 }
 
-//////////////////////////get doctor list///////////////////////
-/*
-function loadDoctorList() {
-    $.ajax({
-        type: "GET",
-        url:  'http://localhost:8080/DoctorList',
-        dataType: "json",
-        success: function (data, status, xhr) {
-            $.each(data, function(key, doctor){
-                let printStr = '<tr><td>' + doctor.doctor_id + '</td><td>' + doctor.name + '</td><td>' + doctor.email +'</td><td>' + doctor.hospital_id + '</td><td>' + doctor.is_director  +'</td></tr>';
-                $('#doctor-list tr:last').after(printStr); 
-            });
-        },
-        error: function (jqXhr, textStatus, errorMessage) {
-            ajaxErrorHandle(jqXhr);
-        }
-    });
-}*/

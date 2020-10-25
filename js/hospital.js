@@ -89,7 +89,7 @@ function editHospital(hospital_id){
             $('#location_x').val(hospital.locationX);
             $('#location_y').val(hospital.locationY).change();
             $('#build_date').val(hospital.build_date).change();
-            // $('#doctor').val(hospital.doctor_id).change();
+        
         },
         error: function (jqXhr, textStatus, errorMessage) {
             ajaxErrorHandle(jqXhr);

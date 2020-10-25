@@ -15,6 +15,7 @@
      <link rel="stylesheet" href="node_modules/bootstrap-social/bootstrap-social.css">
     
      <link href="css/styles.css" rel="stylesheet">
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
  
 </head>
 
@@ -67,31 +68,31 @@
                 <div class="card">
                     <h3 class="card-header bg-primary text-white">Admit Patient </h3>
                     <div class="card-body">
-                        <form method="post" action="staffreg.php">
+                        <form id="patientadmit" method="post" action="staffreg.php">
                         
                             <div class="form-group row">
-                                <label for="fullname" class="col-md-2 col-form-label">Serial Number</label>
+                                <label for="patientid" class="col-md-2 col-form-label">Patient Id</label>
                                 <div class="col-md-10">
-                                    <input type="text" class="form-control" id="serialno" name="serialno" required="requried" placeholder="Serial Number" value = "">
+                                    <input type="text" class="form-control" id="patient_id" name="patient_id" required="requried" placeholder="Patient ID" value = "">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="fullname" class="col-md-2 col-form-label">Hospital ID</label>
+                                <label for="hospital_id" class="col-md-2 col-form-label">Hospital ID</label>
                                 <div class="col-md-10">
-                                    <input type="text" class="form-control" id="hospitalid" name="hospitalid" required="requried" placeholder="Hospital ID" value = "">
+                                    <input type="text" class="form-control" id="hospital_id" name="hospital_id" required="requried" placeholder="Hospital ID" value = "">
                                 </div>
                             </div>
-                            <div class="form-group row">
-                                <label for="fullname" class="col-md-2 col-form-label">Bed ID</label>
+                        <!--    <div class="form-group row">
+                                <label for="bedid" class="col-md-2 col-form-label">Bed ID</label>
                                 <div class="col-md-10">
                                     <input type="text" class="form-control" id="bedid" name="bedid" required="requried" placeholder="Bed ID" value = "">
                                 </div>
-                            </div>
+                            </div> -->
                             
                             <div class="form-group row">
                                 <label for="status" class="col-md-2 col-form-label">Severity Level</label>
                                 <div class="col-md-10">
-                                    <select class="form-control" name="gender">
+                                    <select class="form-control" id="severity_level" name="severity_level">
                                         <option>Low </option>
                                         <option>Moderate</option>
                                         <option>Critical</option>
@@ -100,16 +101,16 @@
                             </div>
                            
                             <div class="form-group row">
-                                <label for="fullname" class="col-md-2 col-form-label">Date</label>
+                                <label for="date" class="col-md-2 col-form-label">Admit Date</label>
                                 <div class="col-md-10">
-                                    <input type="date" class="form-control" id="adate" name="adate" required="requried" placeholder="Date" value = "">
+                                    <input type="date" class="form-control" id="admit_date" name="admit_date" required="requried" placeholder="Date" value = "">
                                 </div>
                             </div>
 
                             <div class="form-group row">
-                                <label for="fullname" class="col-md-2 col-form-label">Admitted by</label>
+                                <label for="admitby" class="col-md-2 col-form-label">Admitted by</label>
                                 <div class="col-md-10">
-                                    <input type="text" class="form-control" id="aby" name="aby" required="requried" placeholder="Doctor ID" value = "">
+                                    <input type="text" class="form-control" id="admitted_by" name="admitted_by" required="requried" placeholder="Doctor ID" value = "">
                                 </div>
                             </div>
                             
@@ -160,6 +161,29 @@
 <script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
 <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#patientadmit').submit(function (e) {
+            e.preventDefault();
+            let form = $(this);
+            admitPatient(form)
+        });
+    });
+
+    function admitPatient(form) {
+      $.ajax({
+          type: "POST",
+          url: 'http://localhost:8080/PatientAdmit?' + form.serialize(),
+          success: function (data, status, xhr) {
+              console.log('Patient is admitted successfully');
+              window.location.replace("doctorpage.html"); 
+          },
+          error: function (jqXhr, textStatus, errorMessage) {
+              console.error(errorMessage)
+          }
+      });
+  }
+</script>
 </body>
 
 </html>

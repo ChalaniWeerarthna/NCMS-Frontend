@@ -194,7 +194,7 @@
                 cancelButtonText: 'Cancel'
             }).then((result) => {
                 if (result.value) {
-                    $.when(deleteHospital(getUrlParameter("hospital_id"))).then(window.location.replace("hospital.html"));
+                    $.when(deleteHospital(getUrlParameter("hospital_id"))).then(window.location.replace("viewhospitals.html"));
                 }
             });
         })

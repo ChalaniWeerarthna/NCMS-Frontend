@@ -15,7 +15,12 @@
      <link rel="stylesheet" href="node_modules/bootstrap-social/bootstrap-social.css">
     
      <link href="css/styles.css" rel="stylesheet">
- 
+     <link href="css/styles.css" rel="stylesheet">
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+     <script src="js/login.js"></script>
+     <script src="toaster/toastr.min.js"></script>
+     <script src="jquery/jquery.min.js"></script>
+     <script src="jquery/jquery.easing.min.js"></script>
 </head>
 
 <body>
@@ -67,25 +72,25 @@
                 <div class="card">
                     <h3 class="card-header bg-primary text-white">MOH Login</h3>
                     <div class="card-body">
-                        <form method="post" action=" ">
+                        <form id="mohloginform" method="post" action=" ">
                             
                             <div class="form-group row">
                                 <label for="firstname" class="col-md-2 col-form-label">User Name</label>
                                 <div class="col-md-10">
-                                    <input type="text" class="form-control" id="usernameA" name="usernameA" required="required" placeholder="User Name" value = "">
+                                    <input type="text" class="form-control" id="email" name="email" required="required" placeholder="Email" value = "">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <label for="firstname" class="col-md-2 col-form-label">Password</label>
                                 <div class="col-md-10">
-                                    <input type="password" class="form-control" id="passwordA" name="passwordA" required="required" placeholder="Password" value="">
+                                    <input type="password" class="form-control" id="moh_id" name="moh_id" required="required" placeholder="Password" value="">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <div class="offset-md-2 col-md-10">
                                     
                                     <!--<a href="./adminpage.html" class="btn btn-info" role="button">Login</a>-->
-                                    <button type="submit" name="loginA" class="btn btn-primary" role="button">Login</button>
+                                    <button type="submit" name="mohlogin" class="btn btn-primary" role="button">Login</button>
                                 </div>
                             </div>
                         </form>
@@ -129,6 +134,18 @@
 <script src="node_modules/jquery/dist/jquery.slim.min.js"></script>
 <script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
 <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#mohloginform').submit(function (e) {
+            e.preventDefault();
+            $(".errorMessage").remove();
+    
+            let form = $(this);
+            mohLogin(form);
+        });
+    });
+    </script>
 
 </body>
 
