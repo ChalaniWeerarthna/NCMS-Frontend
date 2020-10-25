@@ -15,12 +15,12 @@
      <link rel="stylesheet" href="node_modules/bootstrap-social/bootstrap-social.css">
     
      <link href="css/styles.css" rel="stylesheet">
-     <link href="css/styles.css" rel="stylesheet">
      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
      <script src="js/login.js"></script>
      <script src="toaster/toastr.min.js"></script>
      <script src="jquery/jquery.min.js"></script>
      <script src="jquery/jquery.easing.min.js"></script>
+ 
 </head>
 
 <body>
@@ -36,8 +36,8 @@
                     <li class="nav-item "><a class="nav-link" href="./welcome.html"><span class="fa fa-home fa-lg"></span> Home</a></li>
                     <li class="nav-item "><a class="nav-link" href="./patientStatics.html"><span class="fa fa-bar-chart"></span>Patients Statics</a></li>
                     <li class="nav-item "><a class="nav-link" href="./selectregister.html"><span class="fa fa-id-card-o"></span> Register</a></li>
-                    <li class="nav-item "><a class="nav-link" href="selectlogin.html"><span class="fa fa-sign-in"></span> Login</a></li>
-                    <li class="nav-item active"><a class="nav-link" href="./mohlogin.html"><span class="fa fa-user-circle"></span> MOH</a></li>
+                    <li class="nav-item active "><a class="nav-link" href="selectlogin.html"><span class="fa fa-sign-in"></span> Login</a></li>
+                    <li class="nav-item "><a class="nav-link" href="./mohlogin.html"><span class="fa fa-user-circle"></span> MOH</a></li>
                    
                 </ul>            
            </div>    
@@ -48,12 +48,10 @@
     <header class="jumbotron">
         <div class="container">
         <div class="row row-header">
-                <div class="col">
-                    
-                    <h1 class= "text-center"> View patients and bed statics</h1>
-                    
+        <div class="col">
+                      <h1 class="text-center">Please register before login</h1>
+                   
                 </div>
-                
             </div>
         </div>
     </header>
@@ -62,7 +60,7 @@
         <div class="row">
             <ol class="col-12 breadcrumb">
                 <li class="breadcrumb-item"><a href="./welcome.html">Home</a></li>
-                <li class="breadcrumb-item active">MOH</li>
+                <li class="breadcrumb-item active">Login</li>
             </ol>
         </div>
 
@@ -70,29 +68,42 @@
 
             <div class="col-sm-10 offset-sm-1">
                 <div class="card">
-                    <h3 class="card-header bg-primary text-white">MOH Login</h3>
+                    <h3 class="card-header bg-primary text-white">Login</h3>
+
                     <div class="card-body">
-                        <form id="mohloginform" method="post" action=" ">
-                            
-                            <div class="form-group row">
-                                <label for="firstname" class="col-md-2 col-form-label">User Name</label>
+                        <form id= "directorloginform" method="post" action=" ">
+                      
+                          <div class="form-group row">
+                                <label for="loginas" class="col-md-2 col-form-label">Login as</label>
                                 <div class="col-md-10">
-                                    <input type="text" class="form-control" id="email" name="email" required="required" placeholder="Email" value = "">
+                                    <select class="form-control" name="loginas">
+                                        <option>Diretor</option>
+                                       
+                                        
+                                       
+                                    </select>
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="firstname" class="col-md-2 col-form-label">Password</label>
+                                <label for="UserName" class="col-md-2 col-form-label">User Name</label>
                                 <div class="col-md-10">
-                                    <input type="password" class="form-control" id="moh_id" name="moh_id" required="required" placeholder="Password" value="">
+                                    <input type="text" class="login-input" name="email" id="email" required="required" placeholder="Email" value = "">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="Password" class="col-md-2 col-form-label">Password</label>
+                                <div class="col-md-10">
+                                    <input type="password" class="login-input" id="doctor_id" name="doctor_id" required="required" placeholder="Doctor ID" value="">
                                 </div>
                             </div>
                             <div class="form-group row">
                                 <div class="offset-md-2 col-md-10">
                                     
-                                    <!--<a href="./adminpage.html" class="btn btn-info" role="button">Login</a>-->
-                                    <button type="submit" name="submit" class="btn btn-primary" role="button">Login</button>
+                                    <!--<a href="./welcome.html" class="btn btn-info" role="button">Login</a>-->
+                                    <input type="submit" name="login" value="Login" class="btn btn-primary btnSubmit ">
                                 </div>
                             </div>
+                              
                         </form>
         
         
@@ -135,18 +146,19 @@
 <script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
 <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 
-<script type="text/javascript">
-    $(document).ready(function () {
-        $('#mohloginform').submit(function (e) {
-            e.preventDefault();
-            $(".errorMessage").remove();
-    
-            let form = $(this);
-            mohLogin(form);
-        });
-    });
-    </script>
 
+<script type="text/javascript">
+$(document).ready(function () {
+    $('#directorloginform').submit(function (e) {
+        e.preventDefault();
+        $(".errorMessage").remove();
+
+        let form = $(this);
+        directorLogin(form);
+    });
+});
+</script>
 </body>
 
 </html>
+

@@ -15,6 +15,12 @@
      <link rel="stylesheet" href="node_modules/bootstrap-social/bootstrap-social.css">
     
      <link href="css/styles.css" rel="stylesheet">
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+     <script src="js/patient.js"></script>
+     <script src="toaster/toastr.min.js"></script>
+     <script src="jquery/jquery.min.js"></script>
+     <script src="jquery/jquery.easing.min.js"></script>
+     
  
 </head>
 
@@ -62,27 +68,20 @@
             <div class="col-auto">
                 <h2>Your Hospital Details</h2>
                    <div class="table-responsive">
-                    <table class="table table-striped">
+                    <table id="patient-profile" class="table table-striped">
                         <thead class="thead-dark">
                             <tr>
                                 <th>Serial Number</th>
                                 <th>Hospital Name </th>
                                 <th>District of the Hospital</th>
                                 <th>Bed Number</th>
+                                <th>Edit</th>
                                 
                                 
                             </tr>
                         </thead>
                         <tbody>
                        
-                                    <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    
-                                    </tr>
-                                        
                           
                         </tbody>
                     
@@ -125,6 +124,13 @@
 <script src="node_modules/jquery/dist/jquery.slim.min.js"></script>
 <script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
 <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+
+<!--
+<script type="text/javascript">
+    $(document).ready(function () { 
+        dashboardPatient();
+    });
+</script> -->
 
 </body>
 

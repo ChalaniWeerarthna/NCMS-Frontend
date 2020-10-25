@@ -63,6 +63,29 @@ function doctorLogin(form) {
         }
     });
 }
+/////////////////////director login//////////////////
+
+function directorLogin(form) {
+    $.ajax({
+        type: "POST",
+        url: 'http://localhost:8080/DoctorLogin?' + form.serialize(),
+        success: function (data, status, xhr) {
+            let doctor_id = data.doctor_id;
+            let email = data.email;
+
+            Cookies.set('doctor_id', doctor_id);
+            Cookies.set('email', email);
+
+            console.log('login successfully');
+            toastr.success('Login successfully', 'Login Complete');
+
+            window.location.replace("directorpage.html");
+        },
+        error: function (jqXhr, textStatus, errorMessage) {
+            ajaxErrorHandle(jqXhr);
+        }
+    });
+}
 
 //////////////////moh login////////////////////
 function mohLogin(form) {

@@ -15,6 +15,7 @@
      <link rel="stylesheet" href="node_modules/bootstrap-social/bootstrap-social.css">
     
      <link href="css/styles.css" rel="stylesheet">
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
  
 </head>
 
@@ -66,37 +67,26 @@
                 <div class="card">
                     <h3 class="card-header bg-primary text-white">Discharge Patient</h3>
                     <div class="card-body">
-                        <form method="post" action="staffreg.php">
+                        <form id="patientdischarge" method="post" action="staffreg.php">
                         
                             <div class="form-group row">
-                                <label for="fullname" class="col-md-2 col-form-label">Serial Number</label>
+                                <label for="patientid" class="col-md-2 col-form-label">Patient ID</label>
                                 <div class="col-md-10">
                                     <input type="text" class="form-control" id="serialno" name="serialno" required="requried" placeholder="Serial Number" value = "">
                                 </div>
                             </div>
+                            
                             <div class="form-group row">
-                                <label for="fullname" class="col-md-2 col-form-label">Hospital ID</label>
+                                <label for="date" class="col-md-2 col-form-label">Date</label>
                                 <div class="col-md-10">
-                                    <input type="text" class="form-control" id="hospitalid" name="hospitalid" required="requried" placeholder="Hospital ID" value = "">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="fullname" class="col-md-2 col-form-label">Bed ID</label>
-                                <div class="col-md-10">
-                                    <input type="text" class="form-control" id="bedid" name="bedid" required="requried" placeholder="Bed ID" value = "">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="fullname" class="col-md-2 col-form-label">Date</label>
-                                <div class="col-md-10">
-                                    <input type="date" class="form-control" id="ddate" name="ddate" required="requried" placeholder="Date" value = "">
+                                    <input type="date" class="form-control" id="discharge_date" name="discharge_date" required="requried" placeholder="Date" value = "">
                                 </div>
                             </div>
 
                             <div class="form-group row">
-                                <label for="fullname" class="col-md-2 col-form-label">Discharged by</label>
+                                <label for="dischargedby" class="col-md-2 col-form-label">Discharged by</label>
                                 <div class="col-md-10">
-                                    <input type="text" class="form-control" id="dby" name="dby" required="requried" placeholder="Doctor ID" value = "">
+                                    <input type="text" class="form-control" id="discharged_by" name="discharged_by" required="requried" placeholder="Director ID" value = "">
                                 </div>
                             </div>
                             
@@ -105,7 +95,7 @@
                            
                             <div class="form-group row">
                                 <div class="offset-md-2 col-md-10">
-                                <input type="submit" name="dischargepatient" value="Discharge" class="btn btn-primary">
+                                <input type="submit" name="submit" value="Discharge" class="btn btn-primary">
                                 </div>
                             </div>
                         </form>
@@ -149,6 +139,29 @@
 <script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
 <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#patientdischarge').submit(function (e) {
+            e.preventDefault();
+            let form = $(this);
+            dischargePatient(form)
+        });
+    });
+
+    function dischargePatient(form) {
+      $.ajax({
+          type: "POST",
+          url: 'http://localhost:8080/PatientDischarge?' + form.serialize(),
+          success: function (data, status, xhr) {
+              console.log('Patient is discharged successfully');
+              window.location.replace("directorpage.html"); 
+          },
+          error: function (jqXhr, textStatus, errorMessage) {
+              console.error(errorMessage)
+          }
+      });
+  }
+</script>
 </body>
 
 </html>

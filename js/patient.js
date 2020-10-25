@@ -39,7 +39,7 @@ function loadPatientList() {
 
 
 //////////////////////////////patient profile load/////////////////////////////
-
+/*
 function dashboardPatient() {
     let patient_id = Cookies.get('patient_id');
     $.ajax({
@@ -47,21 +47,13 @@ function dashboardPatient() {
         url: 'http://localhost:8080/patientRegister?patient_id=' + patient_id + '&ref=1',
         dataType: "json",
         success: function (data, status, xhr) {
-            let patient = data.data;
-            // $('#patient_id').val(patient.patient_id);
-            $('#first_name').val(patient.first_name);
-            $('#last_name').val(patient.last_name);
-            $('#district').val(patient.district);
-            $('#location_x').val((patient.x_location));
-            $('#location_y').val((patient.y_location));
-            $('#contact').val(patient.contact);
-            $('#email').val(patient.email);
-            $('#age').val((patient.age));
-           
-               
+            $.each(data, function(key, patient){
+                let printStr = '<tr><td>' + patient.serial_no + '</td><td>' + hospital.name+ '</td><td>' + hospital.district +'</td><td>' + patient.bed_id + '</td><td>'+'</td><td><a href="pedit.html?patient_id=' + patient.hospital_id + '" class="edit-btn">Edit</a></td></tr>';
+                $('#patient-profile tr:last').after(printStr); 
+            });
         },
         error: function (jqXhr, textStatus, errorMessage) {
             ajaxErrorHandle(jqXhr);
         }
     });
-}
+}*/
