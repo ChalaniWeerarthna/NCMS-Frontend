@@ -28,11 +28,15 @@ function patientLogin(form) {
 
             Cookies.set('patient_id', patient_id);
             Cookies.set('email', email);
-
             console.log('login successfully');
             toastr.success('Login successfully', 'Login Complete');
-
+            
             window.location.replace("patientpage.html");
+           
+           
+            
+
+            
         },
         error: function (jqXhr, textStatus, errorMessage) {
             ajaxErrorHandle(jqXhr);

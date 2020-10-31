@@ -26,7 +26,7 @@ function loadPatientList() {
         dataType: "json",
         success: function (data, status, xhr) {
             $.each(data, function(key, patient){
-                let printStr = '<tr><td>' + patient.patient_id + '</td><td>' + patient.first_name+ '</td><td>' + patient.last_name +'</td><td>' + patient.contact + '</td><td>' + patient.district + '</td><td>' + patient.email + '</td><td>' + patient.age + '</td><td>' + patient.location_x + '</td><td>' + patient.location_y    +'</td></tr>';
+                let printStr = '<tr><td>' + patient.patient_id + '</td><td>' + patient.first_name+ '</td><td>' + patient.last_name +'</td><td>' + patient.district + '</td><td>' + patient.location_x + '</td><td>' + patient.location_y + '</td><td>' + patient.severity_level + '</td><td>' + patient.hospital_id + '</td><td>' + patient.bed_id+ '</td><td>' + patient.gender +'</td><td>' + patient.contact+'</td><td>' + patient.email+'</td><td>' + patient.age+'</td><td>' + patient.admit_date+'</td><td>' + patient.admitted_by+'</td><td>' + patient.discharge_date+'</td><td>' + patient.discharged_by ;
                 $('#patient-list tr:last').after(printStr); 
             });
         },

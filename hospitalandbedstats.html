@@ -15,6 +15,13 @@
      <link rel="stylesheet" href="node_modules/bootstrap-social/bootstrap-social.css">
     
      <link href="css/styles.css" rel="stylesheet">
+     
+     <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
+    
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.js" type="text/javascript"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js" type="text/javascript"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js"></script>
  
 </head>
 
@@ -65,102 +72,30 @@
 
         <div class="row row-content">
             <div class="col-sm-5">
-                <h2>Country Level</h2>
+                
                    <div class="table-responsive">
-                    <table class="table table-striped">
-                        <thead class="thead-dark">
-                            <tr>
-                                <th>New Hospitals</th>
-                                <th>Total Hospitals</th>
-                                <th>Available Hospitals</th>
-                                
-                            </tr>
-                        </thead>
-                        <tbody>
-                            
-                                    <tr>
-                                    
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    
-                                    </tr>
-                          
-                            
-                        </tbody>
-                    </table>
+                    <table id="hospital-stats">
+                        <thead>
+                          <tr>
+                            <th>Hospital Name</th>
+                            <th>Hospital Level Statistics</th>
+                          </tr>
+                          <tbody>
+                         </thead>   
+                          </tbody>
+                        
+                      </table>
+                      <div class="chart">
+                        <canvas id="myChart"></canvas>
+                      </div>
                 </div>
             </div>
-            <div class="col-sm-5 offset-2">
-                <h2>District Level</h2>
-                   <div class="table-responsive">
-                    <table class="table table-striped">
-                        <thead class="thead-dark">
-                            <tr>
-                                <th>New Hospitals</th>
-                                <th>Total Hospitals</th>
-                                <th>Available Hospitals</th>
-                                
-                            </tr>
-                        </thead>
-                        <tbody>
-                            
-                                    <tr>
-                                    
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    
-                                    </tr>
-                          
-                            
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            
-            
+           
            
        </div> 
-       <div class="row row-content">
-        <div class="col-auto">
-            <h2>Hospital Level</h2>
-               <div class="table-responsive">
-                <table class="table table-striped">
-                    <thead class="thead-dark">
-                        <tr>
-                            <th>Hopital Name</th>
-                            <th>District</th>
-                            <th>Total Beds</th>
-                            <th>Available Beds</th>
-                            
-                        </tr>
-                    </thead>
-                    <tbody>
-                        
-                                <tr>
-                                
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                <td></td>
-                                
-                                </tr>
-                      
-                        
-                    </tbody>
-                </table>
-            </div>
-        </div>
-        
-        
-        
-         
-   </div> 
+       
+    </div> 
 
-        
-    </div>
     
     <footer class="footer">
         <div class="container">
@@ -188,9 +123,85 @@
     </footer>
     
 <!-- jQuery first, then Popper.js, then Bootstrap JS. -->
-<script src="node_modules/jquery/dist/jquery.slim.min.js"></script>
+
 <script src="node_modules/popper.js/dist/umd/popper.min.js"></script>
 <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $.ajax({
+          type: "GET",
+          url: 'http://localhost:8080/Statistics?method=hospitalLevel',
+          dataType: "json",
+          success: function(data, status, xhr) {
+            console.log(data);
+              $.each(data, function(key, obj) {
+                console.log(key);
+                  let printStr = '<tr><td>' + obj.name + '</td><td>' + obj.statistics + '</td></tr>';
+                      $('#hospital-stats tr:last').after(printStr);
+              });
+              
+          },
+          error: function(jqXHR, textStatus, errorThrown){
+              alert('Error: ' + textStatus + ' - ' + errorThrown);
+          }
+
+
+      });
+
+        /*/var labels = json.map(function (e) {
+            return e.name;
+          });
+          console.log(labels); // ["2016", "2017", "2018", "2019"]
+          // Map JSON values back to values array
+          var values = json.map(function (e) {
+            return e.statistics;
+          });
+          console.log(values);*/
+
+
+function BuildChart(labels, values, chartTitle) {
+var ctx = document.getElementById("myChart").getContext('2d');
+var myChart = new Chart(ctx, {
+type: 'bar',
+data: {
+  labels: labels, // Our labels
+  datasets: [{
+    label: chartTitle, // Name the series
+    data: values, // Our values
+    backgroundColor: [ // Specify custom colors
+      'rgba(255, 99, 132, 0.2)',
+      'rgba(54, 162, 235, 0.2)',
+      'rgba(255, 206, 86, 0.2)',
+      'rgba(75, 192, 192, 0.2)',
+      'rgba(153, 102, 255, 0.2)',
+      'rgba(255, 159, 64, 0.2)'
+    ],
+    borderColor: [ // Add custom color borders
+      'rgba(255,99,132,1)',
+      'rgba(54, 162, 235, 1)',
+      'rgba(255, 206, 86, 1)',
+      'rgba(75, 192, 192, 1)',
+      'rgba(153, 102, 255, 1)',
+      'rgba(255, 159, 64, 1)'
+    ],
+    borderWidth: 1 // Specify bar border width
+  }]
+},
+options: {
+  responsive: true, // Instruct chart js to respond nicely.
+  maintainAspectRatio: false, // Add to prevent default behavior of full-width/height 
+}
+});
+return myChart;
+}
+
+    
+    })
+</script>
+
+
+
 
 </body>
 

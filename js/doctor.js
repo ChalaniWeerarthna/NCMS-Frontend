@@ -26,6 +26,7 @@ function addDoctor(form) {
         url: 'http://localhost:8080/doctorRegister?' + form.serialize(),
         success: function (data, status, xhr) {
             console.log('Dotor inserted successfully');
+            window.location.replace("selectlogin.html"); 
             toastr.success('Doctor added successfully', 'Save Complete');
         },
         error: function (jqXhr, textStatus, errorMessage) {
