@@ -13,7 +13,7 @@ function ajaxErrorHandle(jqXhr, redirect = false) {
     }
 
     if (redirect) {
-        window.location.replace("index.html");
+        window.location.replace("welcome.html");
     }
 }
 /////////////////////patient login//////////////////
@@ -28,14 +28,12 @@ function patientLogin(form) {
 
             Cookies.set('patient_id', patient_id);
             Cookies.set('email', email);
+
             console.log('login successfully');
             toastr.success('Login successfully', 'Login Complete');
             
             window.location.replace("patientpage.html");
            
-           
-            
-
             
         },
         error: function (jqXhr, textStatus, errorMessage) {

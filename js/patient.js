@@ -39,16 +39,16 @@ function loadPatientList() {
 
 
 //////////////////////////////patient profile load/////////////////////////////
-/*
+
 function dashboardPatient() {
     let patient_id = Cookies.get('patient_id');
     $.ajax({
         type: "GET",
-        url: 'http://localhost:8080/patientRegister?patient_id=' + patient_id + '&ref=1',
+        url: 'http://localhost:8080/Details?patient_id=' + patient_id + '&ref=1',
         dataType: "json",
         success: function (data, status, xhr) {
-            $.each(data, function(key, patient){
-                let printStr = '<tr><td>' + patient.serial_no + '</td><td>' + hospital.name+ '</td><td>' + hospital.district +'</td><td>' + patient.bed_id + '</td><td>'+'</td><td><a href="pedit.html?patient_id=' + patient.hospital_id + '" class="edit-btn">Edit</a></td></tr>';
+            $.each(data, function(key, sendToPatient){
+                let printStr = '</td><td>' + sendToPatient.bed_id+'</td><td>' + sendToPatient.hospital_id+ '</td><td>' + sendToPatient.district ;
                 $('#patient-profile tr:last').after(printStr); 
             });
         },
@@ -56,4 +56,4 @@ function dashboardPatient() {
             ajaxErrorHandle(jqXhr);
         }
     });
-}*/
+}
